@@ -17,3 +17,6 @@ nsgen(file = "data-raw/JBLH_upload_V1.8.xlsx", skip = 1)
 \description{
 根据FAQ标准问题及同义记事自动做问题泛化
 }
+\examples{
+nsgen()
+}

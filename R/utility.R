@@ -1,25 +1,15 @@
-
-
-
-
-#' 根据FAQ标准问题及同义记事自动做问题泛化
+#' 处理问题泛化业务
 #'
-#' @param file 文件名称
-#' @param skip 跳过多少行
+#' @param faq 问题
 #'
 #' @return 返回值
-#' @import readxl
-#' @import stringr
-#' @import stringi
-#' @import tsda
-#' @import tsdo
 #' @export
 #'
 #' @examples
-#' nsgen()
-nsgen <- function(file="data-raw/JBLH_upload_V1.8.xlsx",skip=1){
+#' generator()
+generator <- function(faq){
 
-      faq <- read_excel(file,skip = skip);
+  #faq <- read_excel(file,skip = skip);
   # View(faq)
   #提取标准问题------
   ques <- faq$标准问
@@ -75,11 +65,11 @@ nsgen <- function(file="data-raw/JBLH_upload_V1.8.xlsx",skip=1){
       for (busi_unit in busi_obj_set1) {
 
 
-          q001_alpha <- str_replace(q1,busi_obj1,busi_unit);
-          #q001_alpha;
+        q001_alpha <- str_replace(q1,busi_obj1,busi_unit);
+        #q001_alpha;
 
-          unit_res[[pcs]] <-q001_alpha;
-          pcs<- pcs+1L;
+        unit_res[[pcs]] <-q001_alpha;
+        pcs<- pcs+1L;
 
       }
 
@@ -116,11 +106,9 @@ nsgen <- function(file="data-raw/JBLH_upload_V1.8.xlsx",skip=1){
   })
 
   res <- unlist(res);
-  faq2 <- faq[,1:10];
+  print(res)
+  faq2 <- faq[,1:14];
   faq2$`相似问题` <- res
   return(faq2)
 
 }
-
-
-
