@@ -17,6 +17,9 @@ nsgen_cartype <- function(file="data-raw/捷豹路虎品牌车型知识点模板
                    sheet = sheet_name)
   faq$标准问 <-stringr::str_replace(faq$标准问,faq$车型,new_carType)
   faq$车型 <- new_carType
+  faq$生效日期 <- na_replace(faq$生效日期,as.character(Sys.Date()))
+  faq$失效日期 <- na_replace(faq$失效日期,'2100-12-31')
+
   res <- generator(faq)
 
   return(res)
