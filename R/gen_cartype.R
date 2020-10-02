@@ -19,7 +19,9 @@ nsgen_cartype <- function(file="data-raw/捷豹路虎品牌车型知识点模板
                                                     "text", "text", "text", "text", "text",
                                                     "text", "text", "text", "text"))
   faq$标准问 <-stringr::str_replace(faq$标准问,faq$车型,new_carType)
-  old_cartype <- faq$车型
+  faq$`业务对象(近义词）` <-stringr::str_replace(faq$`业务对象(近义词）`,faq$车型,new_carType)
+  faq$`业务对象(同义词）` <-stringr::str_replace(faq$`业务对象(同义词）`,faq$车型,new_carType)
+  #old_cartype <- faq$车型
   faq$车型 <- new_carType
   faq$生效日期 <- as.character(faq$生效日期)
   faq$失效日期 <- as.character(faq$失效日期)
@@ -27,7 +29,7 @@ nsgen_cartype <- function(file="data-raw/捷豹路虎品牌车型知识点模板
   faq$失效日期 <- na_replace(faq$失效日期,'2100-12-31')
 
   res <- generator(faq)
-  res$`业务对象(近义词）` <- stringr::str_replace_all(res$`业务对象(近义词）`,old_cartype,new_carType)
+  #res$`业务对象(近义词）` <- stringr::str_replace_all(res$`业务对象(近义词）`,old_cartype,new_carType)
 
   return(res)
 
